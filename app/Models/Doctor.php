@@ -3,11 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Doctor extends Model
 {
-    //
-    public function appointments() {
+    use SoftDeletes;
+
+    protected $table = 'doctors';
+
+    protected $fillable = [
+        'name',
+        'specialization'
+    ];
+
+    public function appointments()
+    {
         return $this->hasMany(Appointment::class);
     }
 }
