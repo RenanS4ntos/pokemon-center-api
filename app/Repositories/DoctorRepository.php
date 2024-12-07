@@ -27,18 +27,4 @@ class DoctorRepository
     {
         return $this->doctor->create($data);
     }
-
-    public function update($id, array $data)
-    {
-        $doctor = $this->findById($id);
-        $doctor->update($data);
-        return $doctor;
-    }
-
-    public function delete($id)
-    {
-        $doctor = $this->findById($id);
-        $doctor->delete();
-        return $doctor;
-    }
 }

@@ -32,16 +32,4 @@ class DoctorController extends Controller
         $doctor = $this->doctorService->findById($id);
         return new DoctorResource($doctor);
     }
-
-    public function update(DoctorRequest $request, $id)
-    {
-        $doctor = $this->doctorService->update($id, $request->validated());
-        return new DoctorResource($doctor);
-    }
-
-    public function destroy($id)
-    {
-        $this->doctorService->delete($id);
-        return response()->noContent();
-    }
 }

@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Trainer;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Doctor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,9 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Trainer::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Cria 4 médicos (doctors) usando a factory
+        Doctor::factory()->count(4)->create();
     }
 }
