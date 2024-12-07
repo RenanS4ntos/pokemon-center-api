@@ -22,7 +22,9 @@ class MedicalRecordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "pokemon_id" => ["required", "integer"],
+            "record_date" => ["required", "date"],
+            "description" => ["required", "string"]
         ];
     }
 }

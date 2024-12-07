@@ -16,7 +16,7 @@ class DoctorController extends Controller
         $this->doctorService = $doctorService;
     }
 
-    public function index()
+    public function listAll()
     {
         return DoctorResource::collection($this->doctorService->getAll());
     }

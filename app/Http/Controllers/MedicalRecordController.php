@@ -16,7 +16,7 @@ class MedicalRecordController extends Controller
         $this->medicalRecordService = $medicalRecordService;
     }
 
-    public function index()
+    public function listAll()
     {
         return MedicalRecordResource::collection($this->medicalRecordService->getAll());
     }
@@ -33,15 +33,4 @@ class MedicalRecordController extends Controller
         return new MedicalRecordResource($medicalRecord);
     }
 
-    public function update(MedicalRecordRequest $request, $id)
-    {
-        $medicalRecord = $this->medicalRecordService->update($id, $request->validated());
-        return new MedicalRecordResource($medicalRecord);
-    }
-
-    public function destroy($id)
-    {
-        $this->medicalRecordService->delete($id);
-        return response()->noContent();
-    }
 }

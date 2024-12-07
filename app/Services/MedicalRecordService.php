@@ -28,13 +28,4 @@ class MedicalRecordService
     return $this->medicalRecordRepository->create($data);
   }
 
-  public function update($id, array $data)
-  {
-    return $this->medicalRecordRepository->update($id, $data);
-  }
-
-  public function delete($id)
-  {
-    return $this->medicalRecordRepository->delete($id);
-  }
 }
