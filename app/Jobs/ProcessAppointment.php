@@ -2,19 +2,28 @@
 
 namespace App\Jobs;
 
+use App\Models\Appointment;
+use App\Mail\AppointmentProcessed;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class ProcessAppointment implements ShouldQueue
 {
-    use Queueable;
+    use Dispatchable, InteractsWithQueue, SerializesModels;
+
+    protected $appointmentId;
 
     /**
      * Create a new job instance.
+     *
+     * @param int $appointmentId
      */
-    public function __construct()
+    public function __construct(int $appointmentId)
     {
-        //
+        $this->appointmentId = $appointmentId;
     }
 
     /**
@@ -22,6 +31,16 @@ class ProcessAppointment implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        // Encontre o agendamento pelo ID
+        $appointment = Appointment::find($this->appointmentId);
+
+        if ($appointment) {
+            // Atualizar o status do agendamento
+            $appointment->status = 'processed';
+            $appointment->save();
+
+            // Enviar e-mail de confirmação
+            Mail::to($appointment->user->email)->send(new AppointmentProcessed($appointment));
+        }
     }
 }

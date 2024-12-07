@@ -25,7 +25,8 @@ class AppointmentRequest extends FormRequest
             "patient_id" => ["required", "integer"],
             "doctor_id" => ["required", "integer"],
             "appointment_date" => ["required", "date"],
-            "notes" => ["string"]
+            "notes" => ["string"],
+            "status" => ["string"],
         ];
     }
 }

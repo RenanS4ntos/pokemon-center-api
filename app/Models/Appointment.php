@@ -15,7 +15,8 @@ class Appointment extends Model
         'pokemon_id',
         'doctor_id',
         'appointment_date',
-        'notes'
+        'notes',
+        'status',
     ];
 
     public function pokemon()
