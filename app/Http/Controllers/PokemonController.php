@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PokemonRequest;
+use App\Http\Requests\PokemonStoreRequest;
+use App\Http\Requests\PokemonUpdateRequest;
 use App\Http\Resources\PokemonResource;
 use App\Services\PokemonService;
-use Illuminate\Http\Request;
 
 class PokemonController extends Controller
 {
@@ -16,24 +16,23 @@ class PokemonController extends Controller
         $this->pokemonService = $pokemonService;
     }
 
-    public function index()
-    {
-        return PokemonResource::collection($this->pokemonService->getAll());
-    }
-
-    public function store(PokemonRequest $request)
+    public function store(PokemonStoreRequest $request)
     {
         $pokemon = $this->pokemonService->create($request->validated());
         return new PokemonResource($pokemon);
     }
 
+    public function listAll()
+    {
+        return PokemonResource::collection($this->pokemonService->getAll());
+    }
     public function show($id)
     {
         $pokemon = $this->pokemonService->findById($id);
         return new PokemonResource($pokemon);
     }
 
-    public function update(PokemonRequest $request, $id)
+    public function update(PokemonUpdateRequest $request, $id)
     {
         $pokemon = $this->pokemonService->update($id, $request->validated());
         return new PokemonResource($pokemon);

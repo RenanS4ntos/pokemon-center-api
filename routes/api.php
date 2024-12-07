@@ -1,28 +1,29 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ItemTypeController;
+use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\TrainerController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
 
-// Route::middleware(JwtMiddleware::class)->group(function () {
+Route::middleware(JwtMiddleware::class)->group(function () {
+    Route::controller(TrainerController::class)->group(function () {
+        Route::get('/trainers', 'listAll');
+        Route::get('/trainer/{id}', 'show');
+        Route::put('/trainer/{id}', 'update');
+        Route::delete('/trainer/{id}', 'destroy');
+    });
 
-//     Route::middleware(JwtMiddleware::class)->group(function () {
-//         Route::controller(ItemController::class)->group(function () {
-//             Route::post('/items', 'store');
-//             Route::patch('/items/{id}', 'update');
-//             Route::delete('/items/{id}', 'destroy');
-//         });
+    Route::controller(PokemonController::class)->group(function () {
+        Route::get('/pokemons', 'listAll');
+        Route::get('/pokemon/{id}', 'show');
+        Route::post('/pokemon', 'store');
+        Route::put('/pokemon/{id}', 'update');
+        Route::delete('/pokemon/{id}', 'destroy');
+    });
 
-//         Route::controller(ItemTypeController::class)->group(function () {
-//             Route::post('/item_types', 'store');
-//             Route::patch('/item_types/{id}', 'update');
-//             Route::delete('/item_types/{id}', 'destroy');
-//         });
+});
 
-//     });
-// });
 
 
 Route::controller(AuthController::class)->group(function () {

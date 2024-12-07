@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TrainerRequest;
+use App\Http\Requests\TrainerStoreRequest;
+use App\Http\Requests\TrainerUpdateRequest;
 use App\Http\Resources\TrainerResource;
 use App\Services\TrainerService;
-use Illuminate\Http\Request;
+
 
 class TrainerController extends Controller
 {
@@ -21,10 +22,15 @@ class TrainerController extends Controller
         return TrainerResource::collection($this->trainerService->getAll());
     }
 
-    public function store(TrainerRequest $request)
+    public function store(TrainerStoreRequest $request)
     {
         $trainer = $this->trainerService->create($request->validated());
         return new TrainerResource($trainer);
+    }
+
+    public function listAll()
+    {
+        return TrainerResource::collection($this->trainerService->getAll());
     }
 
     public function show($id)
@@ -33,8 +39,10 @@ class TrainerController extends Controller
         return new TrainerResource($trainer);
     }
 
-    public function update(TrainerRequest $request, $id)
+    public function update(TrainerUpdateRequest $request, $id)
     {
+        dd($id);
+
         $trainer = $this->trainerService->update($id, $request->validated());
         return new TrainerResource($trainer);
     }

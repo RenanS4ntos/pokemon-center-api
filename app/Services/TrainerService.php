@@ -25,7 +25,7 @@ class TrainerService
 
   public function create(array $data)
   {
-    return $this->trainerRepository->create($data);
+    return $this->trainerRepository->store($data);
   }
 
   public function update($id, array $data)
