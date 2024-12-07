@@ -2,21 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Trainer extends Model
+class Trainer extends User
 {
-    use SoftDeletes;
-
-    protected $table = 'trainers';
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password'
-    ];
-
     public function pokemons()
     {
         return $this->hasMany(Pokemon::class);

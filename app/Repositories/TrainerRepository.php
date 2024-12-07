@@ -23,7 +23,7 @@ class TrainerRepository
         return $this->trainer->findOrFail($id);
     }
 
-    public function create(array $data)
+    public function store(array $data)
     {
         return $this->trainer->create($data);
     }
