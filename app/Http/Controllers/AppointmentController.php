@@ -16,7 +16,7 @@ class AppointmentController extends Controller
         $this->appointmentService = $appointmentService;
     }
 
-    public function index()
+    public function listAll()
     {
         return AppointmentResource::collection($this->appointmentService->getAll());
     }
@@ -33,15 +33,4 @@ class AppointmentController extends Controller
         return new AppointmentResource($appointment);
     }
 
-    public function update(AppointmentRequest $request, $id)
-    {
-        $appointment = $this->appointmentService->update($id, $request->validated());
-        return new AppointmentResource($appointment);
-    }
-
-    public function destroy($id)
-    {
-        $this->appointmentService->delete($id);
-        return response()->noContent();
-    }
 }

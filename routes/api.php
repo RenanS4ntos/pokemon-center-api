@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MedicalRecordController;
@@ -36,6 +37,11 @@ Route::middleware(JwtMiddleware::class)->group(function () {
         Route::post('/medicalRecords', 'store');
     });
 
+    Route::controller(AppointmentController::class)->group(function () {
+        Route::get('/appointment', 'listAll');
+        Route::get('/appointment/{id}', 'show');
+        Route::post('/appointment', 'store');
+    });
 });
 
 

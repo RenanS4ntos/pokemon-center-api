@@ -27,14 +27,4 @@ class AppointmentService
   {
     return $this->appointmentRepository->create($data);
   }
-
-  public function update($id, array $data)
-  {
-    return $this->appointmentRepository->update($id, $data);
-  }
-
-  public function delete($id)
-  {
-    return $this->appointmentRepository->delete($id);
-  }
 }
