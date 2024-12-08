@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MedicalRecordRequest;
 use App\Http\Resources\MedicalRecordResource;
 use App\Services\MedicalRecordService;
-use Illuminate\Http\Request;
+
 
 class MedicalRecordController extends Controller
 {

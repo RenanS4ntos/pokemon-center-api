@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Services\AppointmentService;
+use App\Jobs\ProcessAppointment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -23,7 +24,13 @@ class AppointmentController extends Controller
 
     public function store(AppointmentRequest $request)
     {
-        $appointment = $this->appointmentService->create($request->validated());
+        $data = $request->validated();
+        $data['status'] = 'pending';
+
+        $appointment = $this->appointmentService->create($data);
+
+        ProcessAppointment::dispatch($appointment->id);
+
         return new AppointmentResource($appointment);
     }
 
@@ -32,5 +39,4 @@ class AppointmentController extends Controller
         $appointment = $this->appointmentService->findById($id);
         return new AppointmentResource($appointment);
     }
-
 }

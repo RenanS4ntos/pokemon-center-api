@@ -39,8 +39,11 @@ class ProcessAppointment implements ShouldQueue
             $appointment->status = 'processed';
             $appointment->save();
 
+            // Obter o e-mail do treinador através do Pokemon
+            $trainerEmail = $appointment->pokemon->trainer->email;
+
             // Enviar e-mail de confirmação
-            Mail::to($appointment->user->email)->send(new AppointmentProcessed($appointment));
+            Mail::to($trainerEmail)->send(new AppointmentProcessed($appointment));
         }
     }
 }

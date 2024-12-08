@@ -41,8 +41,6 @@ class TrainerController extends Controller
 
     public function update(TrainerUpdateRequest $request, $id)
     {
-        dd($id);
-
         $trainer = $this->trainerService->update($id, $request->validated());
         return new TrainerResource($trainer);
     }

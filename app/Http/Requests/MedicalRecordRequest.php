@@ -23,7 +23,7 @@ class MedicalRecordRequest extends FormRequest
     {
         return [
             "pokemon_id" => ["required", "integer"],
-            "record_date" => ["required", "date"],
+            // "record_date" => ["date"],
             "description" => ["required", "string"]
         ];
     }

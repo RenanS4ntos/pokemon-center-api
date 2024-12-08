@@ -22,9 +22,9 @@ class AppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "patient_id" => ["required", "integer"],
+            "pokemon_id" => ["required", "integer"],
             "doctor_id" => ["required", "integer"],
-            "appointment_date" => ["required", "date"],
+            "appointment_date" => ["date"],
             "notes" => ["string"],
             "status" => ["string"],
         ];

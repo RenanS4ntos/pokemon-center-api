@@ -25,6 +25,10 @@ class MedicalRecordRepository
 
     public function create(array $data)
     {
+        if (!isset($data['record_date'])) {
+            $data['record_date'] = now();
+        }
+
         return $this->medicalRecord->create($data);
     }
 

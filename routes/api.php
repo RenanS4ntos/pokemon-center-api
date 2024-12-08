@@ -38,7 +38,7 @@ Route::middleware(JwtMiddleware::class)->group(function () {
     });
 
     Route::controller(AppointmentController::class)->group(function () {
-        Route::get('/appointment', 'listAll');
+        Route::get('/appointments', 'listAll');
         Route::get('/appointment/{id}', 'show');
         Route::post('/appointment', 'store');
     });
