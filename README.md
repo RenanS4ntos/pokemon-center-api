@@ -36,4 +36,4 @@ A API do Pokémon Center é projetada para gerenciar agendamentos de consultas m
 
 ### Processamento de Agendamentos
 
-- Job de Processamento: Um job é disparado automaticamente 30 segundos após a criação de um agendamento, atualizando o status do agendamento para "processed" e enviando um e-mail de confirmação para o treinador do Pokémon.
+- Job de Processamento: Um job é disparado após a criação de um agendamento, atualizando o status do agendamento para "processed" e enviando um e-mail de confirmação para o treinador do Pokémon.
